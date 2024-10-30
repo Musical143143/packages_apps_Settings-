@@ -124,13 +124,9 @@
         android:key="ftop_level_wallpapers"
         android:order="-79"
         android:title="@string/wallpaper_settings_title"
-<<<<<<< HEAD
         android:summary="@string/wallpaper_dashboard_summary"
         settings:highlightableMenuKey="@string/menu_key_wallpaper"
         settings:controller="com.android.settings.display.TopLevelWallpaperPreferenceController"/>
-=======
-	settings:controller="com.android.settings.display.TopLevelWallpaperPreferenceController"/>
->>>>>>> 675b08f3d1c (Settings: Redesign top level settings)
 
     <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.accessibility.AccessibilitySettings"
