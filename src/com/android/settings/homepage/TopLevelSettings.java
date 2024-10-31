@@ -229,24 +229,39 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
         }
     }
 
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
-        for (int i = 0; i < CHANGE_LAYOUT_KEYS.length; i++) {
-            Preference preference = findPreference(CHANGE_LAYOUT_KEYS[i]);
-            if (preference != null){
-                preference.setLayoutResource(LAYOUTS_N[i]);
-            }
-        }
-        for (int i = 0; i < CHANGE_LAYOUT_AND_ORDER_KEYS.length; i++) {
-            Preference preference = findPreference(CHANGE_LAYOUT_AND_ORDER_KEYS[i]);
-            if (preference != null){
-                preference.setLayoutResource(R.layout.pengu_card_device);
-                preference.setOrder(12);
-            }
+@Override
+public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    super.onCreatePreferences(savedInstanceState, rootKey);
+
+    for (int i = 0; i < CHANGE_LAYOUT_KEYS.length; i++) {
+        Preference preference = findPreference(CHANGE_LAYOUT_KEYS[i]);
+        if (preference != null) {
+            preference.setLayoutResource(LAYOUTS_N[i]);
         }
     }
 
+    for (int i = 0; i < CHANGE_LAYOUT_AND_ORDER_KEYS.length; i++) {
+        Preference preference = findPreference(CHANGE_LAYOUT_AND_ORDER_KEYS[i]);
+        if (preference != null) {
+            preference.setLayoutResource(R.layout.pengu_card_device);
+            preference.setOrder(12);
+        }
+    }
+    onSetPrefCard();
+}
+
+private void onSetPrefCard() {
+    final PreferenceScreen screen = getPreferenceScreen();
+    final int count = screen.getPreferenceCount();
+    for (int i = 0; i < count; i++) {
+        final Preference preference = screen.getPreference(i);
+        CharSequence title = preference.getTitle();
+            String key = preference.getKey();
+        if ("Back up or copy data".contentEquals(title)) {
+            preference.setLayoutResource(R.layout.pengu_card_mid);
+        }
+    }
+}
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
